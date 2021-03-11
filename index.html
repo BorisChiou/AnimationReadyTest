@@ -14,13 +14,16 @@
 </style>
 <div id="target"></div>
 <script>
-  window.setTimeout(() => {
-    target.style.animation = "anim 1s infinite";
-    const anim = target.getAnimations()[0];
-    anim.ready.then(() => {
-      console.log("anim.ready\n");
-      dump("anim.ready\n");
-    });
-
-  }, 1000);
+setTimeout(() => {
+  target.style.animation = "anim 1s infinite";
+  const anim = target.getAnimations()[0];
+  anim.ready.then(() => {
+    console.log("ready");
+    dump("ready\n");
+  });
+  requestAnimationFrame(() => {
+    console.log("a rAF callback is invoked");
+  });
+  console.log("a setTimeout callback is invoked");
+}, 1000);
 </script>

@@ -15,11 +15,15 @@
 <div id="target"></div>
 <script>
 setTimeout(() => {
-  target.style.animation = "anim 1s infinite";
+  target.style.animation = "anim 2s";
   const anim = target.getAnimations()[0];
   anim.ready.then(() => {
     console.log("ready");
     dump("ready\n");
+  });
+  anim.finished.then(() => {
+    console.log("finish");
+    dump("finish\n");
   });
   requestAnimationFrame(() => {
     console.log("a rAF callback is invoked");

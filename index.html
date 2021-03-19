@@ -14,6 +14,16 @@
 </style>
 <div id="target"></div>
 <script>
+
+function rAF() {
+  console.log("a rAF callback is invoked");
+  dump("a rAF callback is invoked\n");
+
+  setTimeout(() => {
+    requestAnimationFrame(rAF);
+  }, 5000);
+}
+
 setTimeout(() => {
   target.style.animation = "anim 2s";
   const anim = target.getAnimations()[0];
@@ -25,9 +35,9 @@ setTimeout(() => {
     console.log("finish");
     dump("finish\n");
   });
-  requestAnimationFrame(() => {
-    console.log("a rAF callback is invoked");
-  });
+  requestAnimationFrame(rAF);
+
   console.log("a setTimeout callback is invoked");
+  dump("a setTimeout callback is invoked\n");
 }, 1000);
 </script>
